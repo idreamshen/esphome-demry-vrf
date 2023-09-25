@@ -16,7 +16,7 @@ CONFIG_SCHEMA = climate.CLIMATE_SCHEMA.extend({
 }).extend(cv.COMPONENT_SCHEMA)
 
 def to_code(config):
-    var = cg.new_Pvariable(config[CONF_ID], config["idx"])
-    yield climate.register_climate(var, config)
     paren = yield cg.get_variable(config[DEMRY_VRF_ID])
+    var = cg.new_Pvariable(config[CONF_ID], paren.get_uart(), config["idx"])
+    yield climate.register_climate(var, config)
     cg.add(paren.register_climate(var))

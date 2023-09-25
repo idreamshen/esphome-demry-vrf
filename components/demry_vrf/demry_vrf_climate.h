@@ -27,14 +27,15 @@ namespace esphome {
   namespace demry_vrf {
     class DemryVrfClimate : public Component, public climate::Climate {
     public:
-      DemryVrfClimate(uint8_t idx) {
+      DemryVrfClimate(uart::UARTComponent* uartComponent, uint8_t idx) {
+        this->uart_ = uartComponent;
         this->idx_ = idx;
       }
       void setup() override;
       void control(const climate::ClimateCall &call) override;
       climate::ClimateTraits traits() override;
-      void set_uart(uart::UARTComponent *uartComponent) {
-        this->uart_ = uartComponent;
+      uint8_t get_idx() {
+        return this->idx_;
       }
     protected:
       uart::UARTComponent* uart_;
