@@ -1,5 +1,10 @@
 * Core Example
 #+begin_src yaml
+external_components:
+  - source:
+      type: git
+      path: https://github.com/idreamshen/esphome-demry-vrf
+
 uart:
   - id: myuart1
     tx_pin: 1
