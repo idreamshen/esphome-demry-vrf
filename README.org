@@ -1,4 +1,4 @@
-* Core
+* Core Example
 #+begin_src yaml
 uart:
   - id: myuart1
