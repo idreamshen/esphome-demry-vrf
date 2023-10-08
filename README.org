@@ -1,0 +1,85 @@
+* Core
+#+begin_src yaml
+uart:
+  - id: myuart1
+    tx_pin: 1
+    rx_pin: 3
+    baud_rate: 9600
+
+demry_vrf:
+
+climate:
+  - platform: demry_vrf
+    name: "AirCondition keting"
+    idx: 0
+  - platform: demry_vrf
+    name: "AirCondition zhuwo"
+    idx: 1
+  - platform: demry_vrf
+    name: "AirCondition canting"
+    idx: 2
+  - platform: demry_vrf
+    name: "AirCondition ciwo"
+    idx: 3
+#+end_src
+* Full Example
+
+#+begin_src yaml
+esphome:
+  name: vrf
+  friendly_name: vrf
+
+external_components:
+  - source:
+      type: git
+      path: https://github.com/idreamshen/esphome-demry-vrf
+
+esp8266:
+  board: esp01_1m
+
+# Enable logging
+logger:
+  baud_rate: 0
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "YIzrKHlei/qBAGcoFWgVGf2rSeoNh3xeZamfg63dc8U="
+
+ota:
+  password: "4bd1e1ed23c698aa39b3e4ee92ae9e81"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  fast_connect: true
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Vrf Fallback Hotspot"
+    password: "kwvwcKzIBsQU"
+
+captive_portal:
+
+uart:
+  - id: myuart1
+    tx_pin: 1
+    rx_pin: 3
+    baud_rate: 9600
+
+demry_vrf:
+
+climate:
+  - platform: demry_vrf
+    name: "AirCondition keting"
+    idx: 0
+  - platform: demry_vrf
+    name: "AirCondition zhuwo"
+    idx: 1
+  - platform: demry_vrf
+    name: "AirCondition canting"
+    idx: 2
+  - platform: demry_vrf
+    name: "AirCondition ciwo"
+    idx: 3
+#+end_src
