@@ -11,8 +11,8 @@ namespace esphome {
         this->update_pos_ = 0;
       }
       byte data[10] = {  0x01, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFA };
-      data[1] = data[1] + this->update_pos_;
-      data[9] = data[9] + this->update_pos_;
+      data[1] = data[1] + this->climates_[this->update_pos_]->get_idx();
+      data[9] = data[9] + this->climates_[this->update_pos_]->get_idx();
       write_array(data, sizeof(data));
       ESP_LOGD(TAG, "update loop, send %x:%x:%x:%x:%x:%x:%x:%x:%x:%x",
                data[0], data[1], data[2], data[3], data[4],
