@@ -72,7 +72,7 @@ namespace esphome {
     climate::ClimateTraits DemryVrfClimate::traits() {
       auto traits = climate::ClimateTraits();
       traits.set_supports_current_temperature(true);
-      traits.set_visual_target_temperature_step(1);
+      // traits.set_visual_target_temperature_step(1);
       traits.set_visual_temperature_step(1);
       traits.set_visual_min_temperature(16);
       traits.set_visual_max_temperature(30);
