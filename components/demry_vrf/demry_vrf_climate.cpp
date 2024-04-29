@@ -20,11 +20,11 @@ namespace esphome {
         this->fan_mode = *call.get_fan_mode();
       }
 
-      byte data[10] = {  0x01, this->idx_, 0xFF, 0x04, 0x1D, 0x03, 0xFF, 0xFF, 0xFF, 0x00 };
+      uint8_t data[10] = {  0x01, this->idx_, 0xFF, 0x04, 0x1D, 0x03, 0xFF, 0xFF, 0xFF, 0x00 };
       if (this->mode == climate::ClimateMode::CLIMATE_MODE_OFF) {
         data[CMD_IDX_ON_OFF] = CMD_OFF;
 
-        byte offData[10] = {  0x01, this->idx_, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFA };
+        uint8_t offData[10] = {  0x01, this->idx_, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFA };
         offData[9] = offData[9] + 0x01 + this->idx_;
         this->uart_->write_array(offData, sizeof(offData));
         ESP_LOGD(TAG, "receive control cmd, mode=off, send %x:%x:%x:%x:%x:%x:%x:%x:%x:%x",
